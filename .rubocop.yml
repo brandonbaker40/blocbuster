@@ -1,0 +1,25 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'test/**/*'
+    - 'test/*'
+    - 'spec/*'
+    - Gemfile
+    - Rakefile
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - '**/*.rake'
+    - 'config/**/*.rb'
+
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/setup'
+    - 'bin/update'
+
+Lint/UselessAssignment:
+  Exclude:
+    - 'spec/**/*'
