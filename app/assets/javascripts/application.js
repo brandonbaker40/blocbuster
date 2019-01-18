@@ -10,9 +10,21 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 //= require materialize
 //= require materialize-sprockets
+
+$(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+      data: {
+        "The Ringer": null,
+        "Lord of the Rings": null,
+        "Bad News Bears": 'https://placehold.it/250x250'
+      },
+    });
+  });

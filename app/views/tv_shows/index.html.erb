@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <h1 class="center-align">BLOCBUSTER TV</h1>
+  <%= render "layouts/search" %>
   <div class="row">
     <% @tv_shows.each_with_index do |tv_show, index| %>
     <div class="col s12 m6 l4">

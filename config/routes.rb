@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'tv_shows#index'
 
-  resources :tv_shows
+  resources :tv_shows, only: [:index, :show]
 
   resources :tv_shows do
     member do
