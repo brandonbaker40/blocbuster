@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="flow-text"><%= @tv_show["name"] %></h2><br>
+
+  <u><p class="flow-text">Created By:</p></u>
+  <% @tv_show["created_by"].each do |creator| %>
+    <p class="flow-text"><%= creator["name"] %></p>
+  <% end %>
+
+  <p><%= @tv_show["overview"] %></p>
+
+  <% @tv_show["networks"].each do |network| %>
+    <%= network["name"] %><br>
+    <%= network["logo_path"] %><br>
+  <% end %>
+</div>

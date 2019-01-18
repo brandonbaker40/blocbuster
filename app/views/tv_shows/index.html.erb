@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-<h1 class="center-align">BLOCBUSTER TV</h1>
+<div class="container">
+  <h1 class="center-align">BLOCBUSTER TV</h1>
   <div class="row">
     <% @tv_shows.each_with_index do |tv_show, index| %>
     <div class="col s12 m6 l4">
@@ -13,8 +13,10 @@
         </div>
         <div class="overview-text hub">
           <%= tv_show["overview"][0..300] + '...' %>
+          <%= link_to 'MORE', view_it_tv_show_path(tv_show["id"]) %>
         </div>
       </div>
     </div>
     <% end %>
   </div>
+</div>

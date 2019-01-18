@@ -1,4 +1,6 @@
 class TvShowsController < ApplicationController
+  require 'cgi'
+  require 'uri'
   before_action :set_tv_show, only: [:show, :edit, :update, :destroy]
 
   # GET /tv_shows
@@ -65,6 +67,14 @@ class TvShowsController < ApplicationController
     end
   end
 
+  def view_it
+    tv_show_id = request.original_url.split('/')[4]
+
+    @tv_show = HTTParty.get("https://api.themoviedb.org/3/tv/#{tv_show_id}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US")
+
+    render template: "tv_shows/_the_tv_show"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tv_show
@@ -75,4 +85,5 @@ class TvShowsController < ApplicationController
     def tv_show_params
       params.require(:tv_show).permit(:name)
     end
+
 end
