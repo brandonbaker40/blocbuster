@@ -3,20 +3,18 @@
 <h1 class="center-align">BLOCBUSTER TV</h1>
   <div class="row">
     <% @tv_shows.each_with_index do |tv_show, index| %>
-    <div class="col s12 m6 l3">
-      <div class="card black white-text">
+    <div class="col s12 m6 l4">
+      <div class="card medium black white-text hoverable">
         <div class="card-image">
-          <img src="https://image.tmdb.org/t/p/w500<%= tv_show["backdrop_path"] %>">
+          <div class="img-fade">
+            <img src="https://image.tmdb.org/t/p/w500<%= tv_show["backdrop_path"] %>">
+          </div>
           <span class="card-title"><%= tv_show["name"] %></span>
         </div>
-        <br>
-        <%= tv_show["overview"][0..100] + '...' %>
-        <%= tv_show["backdrop_path"] %>
+        <div class="overview-text hub">
+          <%= tv_show["overview"][0..300] + '...' %>
+        </div>
       </div>
     </div>
     <% end %>
   </div>
-
-<br>
-
-<%= link_to 'New Tv Show', new_tv_show_path %>
