@@ -17,14 +17,18 @@ $(document).ready(function(){
   // copy arrays to new vars and initialize empty object for autocomplete func
   var keys = tvShowNames;
   var values = tvShowIds;
+  var autocompleteData = {};
   var localTvShows = {};
 
-  // merge ids and show names to create an object for autocomplete func
+  // form objects for navigation after selection
   keys.forEach((key, i) => localTvShows[key] = values[i]);
   tvShowMap = Object.entries(localTvShows).map(([name, id]) => ({name, id}));
 
+  // form object for autocomplete
+  keys.forEach((key, i) => autocompleteData[key] = null);
+
   $('input.autocomplete').autocomplete({
-    data: localTvShows,
+    data: autocompleteData,
     onAutocomplete: function(val) {
         // Callback function when value is autcompleted.
         var value = $('input.autocomplete').val();
