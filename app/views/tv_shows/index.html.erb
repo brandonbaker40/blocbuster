@@ -10,11 +10,12 @@
           <div class="img-fade">
             <img src="https://image.tmdb.org/t/p/w500<%= tv_show["backdrop_path"] %>">
           </div>
-          <span class="card-title"><%= tv_show["name"] %></span>
+          <span class="card-title name"><%= tv_show["name"] %></span>
         </div>
         <div class="overview-text hub">
           <%= tv_show["overview"][0..300] + '...' %>
           <%= link_to 'MORE', view_it_tv_show_path(tv_show["id"]) %>
+          <span class="invisible_tv_show_ids"><%= tv_show["id"] %></span>
         </div>
       </div>
     </div>
