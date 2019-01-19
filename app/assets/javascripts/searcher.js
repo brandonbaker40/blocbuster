@@ -29,8 +29,8 @@ $(document).ready(function(){
         // Callback function when value is autcompleted.
         var value = $('input.autocomplete').val();
         var foundObject = tvShowMap.filter(obj => obj.name === value)[0]["id"];
-        var link = window.location.replace(`/tv_shows/${foundObject}/view_it`)
-      },
-      limit: 10
+        window.location.replace(`/tv_shows/${foundObject}/view_it`)
+    },
+    limit: 10
   });
 });
