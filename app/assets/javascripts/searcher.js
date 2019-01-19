@@ -1,20 +1,20 @@
 $(document).ready(function(){
-  var arrayOfIds = [];
-  var pancakes = document.getElementsByClassName('invisible_tv_show_ids');
-  for (var i = 0; i < pancakes.length; i++) {
-    arrayOfIds.push(pancakes[i].innerHTML);
+  var idsOnPage = [];
+  var tvShowIds = document.getElementsByClassName('invisible_tv_show_ids');
+  for (var i = 0; i < tvShowIds.length; i++) {
+    idsOnPage.push(tvShowIds[i].innerHTML);
    }
-   console.log(arrayOfIds);
+   console.log(idsOnPage);
 
-  var arrayOfNames = [];
-  var tacos = document.getElementsByClassName('name');
-  for(var j = 0; j < tacos.length; j++) {
-    arrayOfNames.push(tacos[j].innerHTML);
+  var showNamesOnPage = [];
+  var tvShowNames = document.getElementsByClassName('name');
+  for(var j = 0; j < tvShowNames.length; j++) {
+    showNamesOnPage.push(tvShowNames[j].innerHTML);
   }
-  console.log(arrayOfNames);
+  console.log(showNamesOnPage);
 
-  var keys = arrayOfNames;
-  var values = arrayOfIds;
+  var keys = showNamesOnPage;
+  var values = idsOnPage;
   var yummy = {};
   keys.forEach((key, i) => yummy[key] = values[i]);
   barrel = Object.entries(yummy).map(([name, id]) => ({name, id}));
