@@ -28,8 +28,8 @@ $(document).ready(function(){
     onAutocomplete: function(val) {
         // Callback function when value is autcompleted.
         var value = $('input.autocomplete').val();
-        var foundObject = tvShowMap.filter(obj => obj.name === value)[0]["id"];
-        window.location.replace(`/tv_shows/${foundObject}/view_it`)
+        var targetId = tvShowMap.filter(obj => obj.name === value)[0]["id"];
+        window.location.assign(`/tv_shows/${targetId}/view_it`)
     },
     limit: 10
   });
