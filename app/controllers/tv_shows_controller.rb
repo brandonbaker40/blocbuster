@@ -7,8 +7,8 @@ class TvShowsController < ApplicationController
   # GET /tv_shows.json
   def index
     @tv_shows = TvShow.all
-
-    response = HTTParty.get('https://api.themoviedb.org/3/discover/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false')
+    # movie_db_api_key = ENV['MOVIE_DB_API_KEY']
+    response = HTTParty.get("https://api.themoviedb.org/3/discover/tv?api_key=#{set_api_key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false")
 
     @tv_shows = response["results"]
   end
@@ -69,9 +69,7 @@ class TvShowsController < ApplicationController
 
   def view_it
     tv_show_id = request.original_url.split('/')[4]
-
-    @tv_show = HTTParty.get("https://api.themoviedb.org/3/tv/#{tv_show_id}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US")
-
+    @tv_show = HTTParty.get("https://api.themoviedb.org/3/tv/#{tv_show_id}?api_key=#{set_api_key}&language=en-US")
     render template: "tv_shows/_the_tv_show"
   end
 
@@ -84,6 +82,10 @@ class TvShowsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tv_show_params
       params.require(:tv_show).permit(:name)
+    end
+
+    def set_api_key
+      ENV['MOVIE_DB_API_KEY']
     end
 
 end
