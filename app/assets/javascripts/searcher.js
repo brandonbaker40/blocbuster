@@ -1,34 +1,36 @@
 $(document).ready(function(){
-  var idsOnPage = [];
-  var tvShowIds = document.getElementsByClassName('invisible_tv_show_ids');
-  for (var i = 0; i < tvShowIds.length; i++) {
-    idsOnPage.push(tvShowIds[i].innerHTML);
+
+  // collect ids from page
+  var tvShowIds = [];
+  var idsOnPage = document.getElementsByClassName('invisible_tv_show_ids');
+  for (var i = 0; i < idsOnPage.length; i++) {
+    tvShowIds.push(idsOnPage[i].innerHTML);
    }
-   console.log(idsOnPage);
 
-  var showNamesOnPage = [];
-  var tvShowNames = document.getElementsByClassName('name');
-  for(var j = 0; j < tvShowNames.length; j++) {
-    showNamesOnPage.push(tvShowNames[j].innerHTML);
+  // collect show names from page
+  var tvShowNames = [];
+  var showNamesOnPage = document.getElementsByClassName('name');
+  for(var j = 0; j < showNamesOnPage.length; j++) {
+    tvShowNames.push(showNamesOnPage[j].innerHTML);
   }
-  console.log(showNamesOnPage);
 
-  var keys = showNamesOnPage;
-  var values = idsOnPage;
-  var yummy = {};
-  keys.forEach((key, i) => yummy[key] = values[i]);
-  barrel = Object.entries(yummy).map(([name, id]) => ({name, id}));
-  console.log(barrel);
+  // copy arrays to new vars and initialize empty object for autocomplete func
+  var keys = tvShowNames;
+  var values = tvShowIds;
+  var localTvShows = {};
 
-    $('input.autocomplete').autocomplete({
-      data: yummy,
-      onAutocomplete: function(val) {
-          // Callback function when value is autcompleted.
-          var value = $('input.autocomplete').val();
-          var foundObject = barrel.filter(obj => obj.name === value)[0]["id"];
+  // merge ids and show names to create an object for autocomplete func
+  keys.forEach((key, i) => localTvShows[key] = values[i]);
+  tvShowMap = Object.entries(localTvShows).map(([name, id]) => ({name, id}));
 
-          var link = window.location.replace(`/tv_shows/${foundObject}/view_it`)
-        },
-        limit: 10
-    });
+  $('input.autocomplete').autocomplete({
+    data: localTvShows,
+    onAutocomplete: function(val) {
+        // Callback function when value is autcompleted.
+        var value = $('input.autocomplete').val();
+        var foundObject = tvShowMap.filter(obj => obj.name === value)[0]["id"];
+        var link = window.location.replace(`/tv_shows/${foundObject}/view_it`)
+      },
+      limit: 10
   });
+});
