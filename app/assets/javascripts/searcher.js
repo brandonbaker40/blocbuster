@@ -27,6 +27,47 @@ $(document).ready(function(){
   // map object for autocomplete
   keys.forEach((key, i) => autocompleteData[key] = null);
 
+  // remote
+
+  var searchy = "bingo";
+
+  var url = new URL("https://api.themoviedb.org/3/search/tv")
+  var params = { api_key: "fb6a1d3f38c3d97f67df6d141f936f29", language:  "en-US", query: `${searchy}`, page: 1}
+  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+  var gogo = fetch(url, params)
+              .then(data => {
+                return data.json()
+              })
+              .then(res => {
+                console.log(res);
+                // console.log(res["results"]);
+                // var simpler = {};
+                // var pieces = res["results"];
+                // pieces.forEach((key, i) => simpler[key["name"]] = null);
+                // console.log(simpler);
+              })
+              .then(error => {
+                console.log(error)
+              });
+
+  // brave tries
+
+// https://repl.it/repls/NearDarkFactor
+//   var simpler = {}
+//   var dogs = [{ "name": "Puppy Dog Pals", "id": 72089, "favorite": "Doodoo"}, { "name": "Hobos", "id": 72229, "favorite": "Mix"}]
+//   dogs.forEach((key, i) => simpler[key["name"]] = null);
+//    console.log(simpler);
+
+// https://repl.it/repls/DimwittedOrneryCarriers
+// var autocompleteData = {"Vikings": null, "The Flash": null, "Riverdale": null, "Arrow": null, "Dragon Ball": null}
+// var points = {"Growth": null, "Pear": null, "LaPen Wins": null, "Hoki": null}
+// var newy = Object.assign(autocompleteData, points);
+// console.log(newy);
+
+  // end remote
+
+
   $('input.autocomplete').autocomplete({
     data: autocompleteData,
     onAutocomplete: function(val) {
