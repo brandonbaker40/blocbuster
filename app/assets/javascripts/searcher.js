@@ -20,11 +20,11 @@ $(document).ready(function(){
   var autocompleteData = {};
   var localTvShows = {};
 
-  // form objects for navigation after selection
+  // map objects for navigation after selection
   keys.forEach((key, i) => localTvShows[key] = values[i]);
   tvShowMap = Object.entries(localTvShows).map(([name, id]) => ({name, id}));
 
-  // form object for autocomplete
+  // map object for autocomplete
   keys.forEach((key, i) => autocompleteData[key] = null);
 
   $('input.autocomplete').autocomplete({
