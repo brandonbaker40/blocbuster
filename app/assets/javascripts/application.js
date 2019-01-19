@@ -38,23 +38,29 @@ $(document).ready(function(){
   var values = arrayOfIds;
   var yummy = {};
   keys.forEach((key, i) => yummy[key] = values[i]);
+  barrel = Object.entries(yummy).map(([name, id]) => ({name, id}));
+  console.log(barrel);
 
     $('input.autocomplete').autocomplete({
       data: yummy,
       onAutocomplete: function(val) {
           // Callback function when value is autcompleted.
           var value = $('input.autocomplete').val();
-          console.log(yummy);
-          if(value == "Apple"){
-          		var link = window.open('http://www.apple.com', '_blank');
-          		link.location;
-          } else if(value == "Google"){
-          		var link = window.open('http://www.google.com', '_blank');
-          		link.location;
-          } else {
-          		var link = window.open('http://www.microsoft.com', '_blank');
-          		link.location;
-          }
+          var foundObject = barrel.filter(obj => obj.name === value)[0]["id"];
+
+          var link = window.open(`/tv_shows/${foundObject}/view_it`)
+
+          // if(value == "Apple"){
+          // 		var link = window.open('http://www.apple.com', '_blank');
+          // 		link.location;
+          // } else if(value == "Google"){
+          // 		var link = window.open('http://www.google.com', '_blank');
+          // 		link.location;
+          // } else {
+          // 		var link = window.open('http://www.microsoft.com', '_blank');
+          // 		link.location;
+          //     console.log(link.location);
+          // }
         },
         limit: 10
     });
