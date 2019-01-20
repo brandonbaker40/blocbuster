@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1 class="center-align">BLOCBUSTER TV</h1>
+  <%= render "layouts/search" %>
+  <div class="row">
+    <% @search_results["results"].each_with_index do |search_result, index| %>
+    <div class="col s12 m6 l4">
+      <div class="card medium black white-text hoverable">
+        <div class="card-image">
+          <div class="img-fade">
+            <% if search_result["backdrop_path"] != nil %>
+              <img src="https://image.tmdb.org/t/p/w500<%= search_result["backdrop_path"] %>">
+            <% else %>
+              <img src="http://www.abap-tutorials.com/wp-content/uploads/2011/09/placeholderf.jpg">
+            <% end %>
+          </div>
+          <span class="card-title name"><%= search_result["name"] %></span>
+        </div>
+        <div class="overview-text hub">
+          <%= search_result["overview"][0..300] + '...' %>
+          <%= link_to 'MORE', view_it_tv_show_path(search_result["id"]) %>
+          <span class="invisible_tv_show_ids"><%= search_result["id"] %></span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

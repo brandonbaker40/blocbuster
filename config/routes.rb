@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :tv_shows do
     member do
       get :view_it
+      get :search_results
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

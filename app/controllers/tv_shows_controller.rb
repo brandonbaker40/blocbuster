@@ -73,6 +73,12 @@ class TvShowsController < ApplicationController
     render template: "tv_shows/_the_tv_show"
   end
 
+  def search_results
+    search_query = request.original_url.split('/').last.match(/query=([^&]*)/)[1]
+    @search_results = HTTParty.get("https://api.themoviedb.org/3/search/tv?api_key=#{set_api_key}&language=en-US&query=#{search_query}&page=1")
+    render template: "tv_shows/_search_results"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tv_show
