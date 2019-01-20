@@ -42,8 +42,6 @@ $(document).ready(function(){
     if (e.which == 13) {
       var value = $('input.autocomplete').val();
       window.location.assign(`/tv_shows/${getTime().toString()}/search_results?query=${value}`);
-      //$('form#login').submit();
-      //return false;    //<---- Add this line
     }
   });
 });
