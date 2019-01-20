@@ -18,12 +18,33 @@
 
 @import "materialize";
 
-// .bg
-// {
-//   width: 100%;
-//   z-index: 0;
-// }
-
 .invisible_tv_show_ids {
   visibility: hidden;
 }
+
+/* label focus color */
+ .input-field input:focus + label {
+   color: red !important;
+ }
+
+ /* label underline focus color */
+ .row .input-field input:focus {
+   border-bottom: 1px solid black !important;
+   box-shadow: 0 1px 0 0 black !important
+ }
+
+ /* icon prefix focus color */
+ .row .input-field .prefix.active {
+   color: red;
+ }
+
+ .section-search input.autocomplete {
+   color: #e45d;
+ }
+
+ .dropdown-content li>a, .dropdown-content li>span {
+   color: #000!important;
+ }
+ .autocomplete-content li .highlight {
+   color: red!important;
+ }
