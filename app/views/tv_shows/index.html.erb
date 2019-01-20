@@ -15,16 +15,18 @@
     <% @tv_shows.each_with_index do |tv_show, index| %>
     <div class="col s12 m6 l4">
       <div class="card medium black white-text hoverable">
-        <div class="card-image">
-          <div class="img-fade">
-            <img src="https://image.tmdb.org/t/p/w500<%= tv_show["backdrop_path"] %>">
+        <%= link_to view_it_tv_show_path(tv_show["id"]) do %>
+          <div class="card-image">
+            <div class="img-fade">
+              <img src="https://image.tmdb.org/t/p/w500<%= tv_show["backdrop_path"] %>">
+            </div>
+            <span class="card-title name"><%= tv_show["name"] %></span>
           </div>
-          <span class="card-title name"><%= tv_show["name"] %></span>
-        </div>
-        <div class="overview-text hub">
+        <% end %>
+        <div class="overview-text">
           <%= tv_show["overview"][0..300] + '...' %>
           <%= link_to 'MORE', view_it_tv_show_path(tv_show["id"]) %>
-          <span class="invisible_tv_show_ids"><%= tv_show["id"] %></span>
+          <span class="invisible-tv-show-ids"><%= tv_show["id"] %></span>
         </div>
       </div>
     </div>

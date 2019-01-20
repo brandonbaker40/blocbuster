@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   // collect ids from page
   var tvShowIds = [];
-  var idsOnPage = document.getElementsByClassName('invisible_tv_show_ids');
+  var idsOnPage = document.getElementsByClassName('invisible-tv-show-ids');
   for (var i = 0; i < idsOnPage.length; i++) {
     tvShowIds.push(idsOnPage[i].innerHTML);
    }

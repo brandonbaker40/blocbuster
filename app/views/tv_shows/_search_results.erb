@@ -19,28 +19,30 @@
     <% @search_results["results"].each_with_index do |search_result, index| %>
     <div class="col s12 m6 l4">
       <div class="card medium black white-text hoverable">
-        <div class="card-image">
-          <% if search_result["backdrop_path"] %>
-            <div class="img-fade">
-              <img src="https://image.tmdb.org/t/p/w500<%= search_result["backdrop_path"] %>">
-            </div>
-            <% elsif search_result["poster_path"] %>
-            <div class="poster-container">
-              <div class="poster-fade cropper">
-                <img src="https://image.tmdb.org/t/p/w500<%= search_result["poster_path"] %>">
+        <%= link_to view_it_tv_show_path(search_result["id"]) do %>
+          <div class="card-image">
+            <% if search_result["backdrop_path"] %>
+              <div class="img-fade">
+                <img src="https://image.tmdb.org/t/p/w500<%= search_result["backdrop_path"] %>">
               </div>
-            </div>
-            <% else %>
-            <div class="img-fade">
-              <img src="https://c.na72.content.force.com/servlet/servlet.ImageServer?id=0151H000004FM1FQAW&oid=00DA0000000Zzoi">
-            </div>
-            <% end %>
-          <span class="card-title name"><%= search_result["name"] %></span>
-        </div>
+              <% elsif search_result["poster_path"] %>
+              <div class="poster-container">
+                <div class="poster-fade cropper">
+                  <img src="https://image.tmdb.org/t/p/w500<%= search_result["poster_path"] %>">
+                </div>
+              </div>
+              <% else %>
+              <div class="img-fade">
+                <img src="https://c.na72.content.force.com/servlet/servlet.ImageServer?id=0151H000004FM1FQAW&oid=00DA0000000Zzoi">
+              </div>
+              <% end %>
+            <span class="card-title name"><%= search_result["name"] %></span>
+          </div>
+        <% end %>
         <div class="overview-text">
           <%= search_result["overview"][0..300] + '...' %>
           <%= link_to 'MORE', view_it_tv_show_path(search_result["id"]) %>
-          <span class="invisible_tv_show_ids"><%= search_result["id"] %></span>
+          <span class="invisible-tv-show-ids"><%= search_result["id"] %></span>
         </div>
       </div>
     </div>
