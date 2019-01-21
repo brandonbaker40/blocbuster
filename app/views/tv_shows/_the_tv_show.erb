@@ -1,29 +1,60 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
+  <%= render "layouts/title" %>
+  <%= render "layouts/search" %>
   <div class="col s12">
     <div class="row">
       <div class="col s12">
+        <div class="card-action border-none left-align">
+          <a class="waves-effect waves-light btn red darken-3 box-shadow" href="/">Home</a>
+        </div>
+      </div>
+      <div class="col s12">
         <div class="card large horizontal">
           <div class="card-image responsive-img">
-            <img src="https://image.tmdb.org/t/p/w500<%= @tv_show["poster_path"] %>">
+            <% if @tv_show["poster_path"] %>
+              <img src="https://image.tmdb.org/t/p/w500<%= @tv_show["poster_path"] %>">
+            <% elsif %>
+              <img src="https://image.tmdb.org/t/p/w500<%= @tv_show["backdrop_path"] %>">
+            <% else %>
+              <img src="https://c.na72.content.force.com/servlet/servlet.ImageServer?id=0151H000004FM1FQAW&oid=00DA0000000Zzoi">
+            <% end %>
           </div>
           <div class="card-stacked">
             <div class="card-content">
               <h5><%= @tv_show["name"] %></h5>
               <p><%= @tv_show["overview"] %></p>
+
+              <% if @tv_show["created_by"].length > 0 %>
               <h5>Creators:</h5>
-              <% @tv_show["created_by"].each do |creator| %>
-                <p class="flow-text"><%= creator["name"] %></p>
+                <% creators = [] %>
+                <% @tv_show["created_by"].each do |creator| %>
+                  <% creators.push(creator["name"]) %>
+                <% end %>
+                <%= creators.join(', ') %>
               <% end %>
-              <h5>Watch on:</h5>
-              <% @tv_show["networks"].each do |network| %>
-                <%= network["name"] %><br>
-                <%= network["logo_path"] %><br>
+
+              <% if @tv_show["networks"].length > 0 %>
+                <h5>Watch on:</h5>
+                <% networks = [] %>
+                <% @tv_show["networks"].each do |network| %>
+                  <% networks.push(network["name"]) %>
+                <% end %>
+                <% if networks.length > 0 %>
+                  <%= networks.join(', ') + ", YouTube" %>
+                <% else %>
+                  <%= "YouTube" %>
+                <% end %>
               <% end %>
+
             </div>
             <div class="card-action border-none right-align">
-              <a class="waves-effect waves-light btn red darken-3 box-shadow">Watch Now</a>
+              <a class="waves-effect waves-light btn red darken-3 box-shadow"
+                 href="https://www.youtube.com/results?search_query=watch%20<%= @tv_show["name"] %>%20tv%20show"
+                 target="_blank">
+                 Watch Now
+               </a>
             </div>
           </div>
         </div>
