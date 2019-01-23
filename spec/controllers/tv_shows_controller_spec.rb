@@ -236,7 +236,6 @@ RSpec.describe TvShowsController, type: :controller do
   describe 'GET #show' do
     it 'returns a success response' do
       tv_show = valid_attributes
-      # get :show, params: {id: tv_show[:id]}, session: valid_session
       expect(response).to be_successful
     end
   end
