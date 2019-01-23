@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
+# rubocop:disable Metrics/LineLength
+
+# TvShowController
 class TvShowsController < ApplicationController
   require 'cgi'
   require 'uri'
-  before_action :set_tv_show, only: [:show, :edit, :update, :destroy]
+  before_action :set_tv_show, only: %i[show edit update destroy]
 
   # GET /tv_shows
   # GET /tv_shows.json
@@ -10,13 +15,12 @@ class TvShowsController < ApplicationController
 
     response = HTTParty.get(endpoint)
 
-    @tv_shows = response["results"]
+    @tv_shows = response['results']
   end
 
   # GET /tv_shows/1
   # GET /tv_shows/1.json
-  def show
-  end
+  def show; end
 
   # GET /tv_shows/new
   def new
@@ -24,8 +28,7 @@ class TvShowsController < ApplicationController
   end
 
   # GET /tv_shows/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tv_shows
   # POST /tv_shows.json
@@ -70,29 +73,35 @@ class TvShowsController < ApplicationController
   def view_it
     tv_show_id = request.original_url.split('/')[4]
     @tv_show = HTTParty.get("https://api.themoviedb.org/3/tv/#{tv_show_id}?api_key=#{set_api_key}&language=en-US")
-    render template: "tv_shows/_the_tv_show"
+    render template: 'tv_shows/_the_tv_show'
   end
 
   def search_results
-    search_query = request.original_url.split('/').last.match(/query=([^&]*)/)[1]
+    search_query = request.original_url
+                          .split('/')
+                          .last
+                          .match(/query=([^&]*)/)[1]
+
     search_endpoint = "https://api.themoviedb.org/3/search/tv?api_key=#{set_api_key}&language=en-US&query=#{search_query}&page=1"
     @search_results = HTTParty.get(search_endpoint)
-    render template: "tv_shows/_search_results"
+    render template: 'tv_shows/_search_results'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tv_show
-      @tv_show = TvShow.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tv_show_params
-      params.require(:tv_show).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tv_show
+    @tv_show = TvShow.find(params[:id])
+  end
 
-    def set_api_key
-      ENV['MOVIE_DB_API_KEY']
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tv_show_params
+    params.require(:tv_show).permit(:name)
+  end
 
+  def set_api_key
+    ENV['MOVIE_DB_API_KEY']
+  end
 end
+
+# rubocop:enable Metrics/LineLength
