@@ -120,9 +120,13 @@ Users can search for tv shows and click on the results on their searches to disp
 I used the RSpec gem to create tests for my application. I tested the controllers, requests, and views. You can run tests locally as follows:
 
 `rake spec` to run all Ruby tests
+
 `rake spec:controllers` to run Ruby controller tests
+
 `rake spec:views` to run Ruby view tests
+
 `rake spec:requests` to run Ruby request tests
+
 `rspec ./spec/path/to/my_spec.rb` to run all Ruby tests in the file my_spec.rb
 
 **#4 Deploy your site to a web host (e.g. on Amazon EC2, Heroku, Netlify, Google AppEngine, etc.).**
