@@ -1,5 +1,12 @@
 # Blocbuster
+
+## Demo Video
+
 Blocbuster is a TV show discovery web application built in Ruby on Rails. It uses the Movie Database API to populate content within the application.
+
+![](blocbuster.gif)
+
+## [VIDEO: Demo Link](https://drive.google.com/file/d/1t7_3_wl-AcnubGje0HbKg5C3VW73LbHA/view?usp=sharing)
 
 ## Prerequisites
 
