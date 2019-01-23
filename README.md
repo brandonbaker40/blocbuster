@@ -142,9 +142,11 @@ JavaScript, jQuery: I knew the search feature would need to use some form of Jav
 Materialize CSS: I'm comfortable with this library and find it a suitable alternative to others like Bootstrap.
 
 **Any trade-offs?**
-I don't like to use third-party gems if I can help it. I've used Ruby's `Net:HTTP` module provided but found configuring the HTTParty gem for this project to be easier.
+
+I don't like to use third-party gems if I can help it. I've used Ruby's `Net:HTTP` module but found configuring the HTTParty gem for this project to be easier.
 
 **Anything you left out?**
+
 I met all the minimums. Autocomplete, which was not a required feature, is only implemented locally. Autocomplete will only scan for tv show titles that already appear on the page.
 
 **What you might do differently if you had more time to spend on the project?**

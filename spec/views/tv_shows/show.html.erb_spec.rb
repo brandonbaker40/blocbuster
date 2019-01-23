@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "tv_shows/show", type: :view do
-  let(:the_flash) {
+  let(:valid_tv_show) {
     {
       "backdrop_path": "/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
       "created_by": [
@@ -182,8 +182,20 @@ RSpec.describe "tv_shows/show", type: :view do
     }
   }
 
-  it "renders attributes in <p>" do
-    render
-    expect(rendered).to match(/Name/)
+  # search results page
+  describe "tv_shows/1548217010273/search_results?query=Arrow" do
+    it "infers the controller path" do
+      puts controller.request.path_parameters
+      expect(controller.request.path_parameters[:controller]).to eq("tv_shows")
+      expect(controller.request.path_parameters[:action]).to eq("show")
+    end
+  end
+
+  # tv show profile page
+  describe "tv_shows/1412/view_it" do
+    it "infers the controller path" do
+      expect(controller.request.path_parameters[:controller]).to eq("tv_shows")
+      expect(controller.request.path_parameters[:action]).to eq("show")
+    end
   end
 end
