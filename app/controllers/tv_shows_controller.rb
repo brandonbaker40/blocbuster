@@ -6,9 +6,9 @@ class TvShowsController < ApplicationController
   # GET /tv_shows
   # GET /tv_shows.json
   def index
-    @tv_shows = TvShow.all
-    # movie_db_api_key = ENV['MOVIE_DB_API_KEY']
-    response = HTTParty.get("https://api.themoviedb.org/3/discover/tv?api_key=#{set_api_key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false")
+    endpoint = "https://api.themoviedb.org/3/discover/tv?api_key=#{set_api_key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false"
+
+    response = HTTParty.get(endpoint)
 
     @tv_shows = response["results"]
   end
@@ -75,7 +75,8 @@ class TvShowsController < ApplicationController
 
   def search_results
     search_query = request.original_url.split('/').last.match(/query=([^&]*)/)[1]
-    @search_results = HTTParty.get("https://api.themoviedb.org/3/search/tv?api_key=#{set_api_key}&language=en-US&query=#{search_query}&page=1")
+    search_endpoint = "https://api.themoviedb.org/3/search/tv?api_key=#{set_api_key}&language=en-US&query=#{search_query}&page=1"
+    @search_results = HTTParty.get(search_endpoint)
     render template: "tv_shows/_search_results"
   end
 
